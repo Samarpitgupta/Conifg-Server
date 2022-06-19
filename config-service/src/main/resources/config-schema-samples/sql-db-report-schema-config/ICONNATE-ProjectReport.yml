@@ -1,0 +1,51 @@
+---
+ReportDefinitions:
+ serviceName: iConnate
+ report:
+    name: ProjectReport
+    source: iconnatedb
+    queries:
+      query: |-
+        select pro.pro_name, bu.bu_name , sum(time.work_hour) total_hours
+        from  business_unit bu inner join timetrack time inner join timetrack_project pro where
+        pro.id =? AND time.work_date between ? AND ? group by bu.bu_name 
+    sourceColumns:
+    - name: pro_name
+      label: pro.pro_name
+      type: string
+    - name: buName
+      label: bu.bu_name
+      type: string
+    - name: work_hour
+      label: time.work_hour
+      type: string
+    searchParams:
+    - name: projectId
+      label: pro.projectId
+      type: number
+      pattern: ''
+      isMandatory: true
+      searchClause: ''
+    - name: fromDate
+      label: ''
+      type: date
+      pattern: ''
+      isMandatory: true
+      searchClause: ''
+    - name: toDate
+      label: ''
+      type: date
+      pattern: ''
+      isMandatory: true
+      searchClause: ''
+    - name: limit
+      label: ''
+      type: number
+      pattern: ''
+      isMandatory: false
+      searchClause: ''
+    orderBy: 'order by total_hours desc'
+    limit: 500
+    insight: {}
+    comment: ''
+    

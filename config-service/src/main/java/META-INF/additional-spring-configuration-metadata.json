@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "report.config.path",
+    "type": "java.lang.String",
+    "description": "A description for 'report.config.path'"
+  },
+  {
+    "name": "db.flag",
+    "type": "java.lang.String",
+    "description": "A description for 'db.flag'"
+  }
+]}

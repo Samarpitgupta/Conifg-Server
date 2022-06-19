@@ -1,0 +1,16 @@
+---
+dbsettings:
+  datasource:
+  - name: iConnate-TTDB
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ttdb
+    username: root
+    password: root
+  - name: iConnate-User
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/iconnate_user
+    username: root
+    password: root
+
+reportConfig:
+    path: github.com/Samarpitgupta/config-repo

@@ -1,0 +1,26 @@
+ReportDefinitions:
+  serviceName: iConnate-hire
+  roles:
+    - 2001
+    - 2002
+    - 2005
+  report:
+    name: ExperienceReport
+    source: iconnate_interviews
+    esIndex: iconnate_interviews
+    esDocType: doc
+    esQueries:
+      query: >-
+        { "_source" : [
+        "candidate.name","candidate.emails","candidate.phoneNumbers","candidate.candidateId"],
+        "query": { "bool":{ "must":[{"match": { "candidate.skills":"java" }},
+        {"match": { "openPosition.minExperience": "1" }}] } } }
+      role: 4011
+    restrictedFields:
+      - role: 4012
+        fields:
+          - candidate.candidateId
+      - role: 4015
+        fields:
+          - candidate.candidateId
+    numberOfRecords: 10

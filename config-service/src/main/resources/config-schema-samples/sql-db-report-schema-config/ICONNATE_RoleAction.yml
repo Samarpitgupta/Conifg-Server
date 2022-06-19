@@ -1,0 +1,116 @@
+---
+ReportDefinitions:
+  serviceName: iConnate
+  roles:
+  - 3626
+  - 3655
+  - 3001
+  report:
+    name: RoleAction
+    source: iconnate-user
+    queries:
+      query: |-
+        SELECT usr.id as userId,  usr.username as username, usr.email_id as userEmailId,
+        usr.phone_no as userPhoneNo,  usr.org_id as userOrgId, usr.avatar_url as userAvatarUrl,  cu.country_id
+        as userCountryId, r.id as roleId, r.role_name as roleName, r.code as roleCode,
+        r.description as roleDescription, r.is_org_admin as isOrgAdmin, r.org_id as
+        roleOrgId, act.id as actionId, act.name as actionName, act.url as actionUrl
+        from iconnate_user usr LEFT JOIN iconnate_country_user cu ON usr.id = cu.user_id LEFT JOIN user_role
+        ur ON ur.user_id = usr.id LEFT JOIN role r ON ur.role_id = r.id LEFT JOIN
+        role_org ro ON ro.role_id = r.id LEFT JOIN role_actions ra ON r.id = ra.role_id
+        LEFT JOIN actions act ON ra.action_id = act.id
+    sourceColumns:
+    - name: userId
+      label: usr.id
+      type: number
+      roleIds:
+      - 3001
+      - 3002
+    - name: username
+      label: usr.username
+      type: string
+      roleIds:
+      - 3001
+      - 3002
+    - name: userEmailId
+      label: usr.email_id
+      type: string
+      roleIds:
+      - 3001
+      - 3002
+    - name: userPhoneNo
+      label: usr.phone_no
+      type: number
+      roleIds:
+      - 3001
+    - name: userOrgId
+      label: usr.org_id
+      type: number
+      roleIds:
+      - 3001
+    - name: userAvatarUrl
+      label: usr.avatar_url
+      type: string
+      roleIds:
+      - 30005
+    - name: userCountryId
+      label: cu.country_id
+      type: number
+      roleIds:
+      - 3001
+    - name: roleId
+      label: r.id
+      type: number
+      roleIds:
+      - 3001
+    - name: roleName
+      label: r.role_name
+      type: string
+      roleIds:
+      - 3001
+    - name: roleCode
+      label: r.code
+      type: number
+      roleIds:
+      - 3001
+    - name: roleDescription
+      label: r.description
+      type: number
+      roleIds:
+      - 3001
+    - name: isOrgAdmin
+      label: r.is_org_admin
+      type: boolean
+      roleIds:
+      - 3001
+    - name: roleOrgId
+      label: r.org_id
+      type: number
+      roleIds:
+      - 3001
+    - name: actionName
+      label: act.name
+      type: string
+      roleIds:
+      - 3001
+    - name: actionId
+      label: act.id
+      type: number
+      roleIds:
+      - 3001
+    - name: actionUrl
+      label: act.url
+      type: string
+      roleIds:
+      - 32222
+    searchParams:
+    - name: limit
+      label: ''
+      type: number
+      pattern: ''
+      isMandatory: false
+      searchClause: ''
+    orderBy: order by userId desc
+    limit: 100
+    insight: {}
+    comment: ''
